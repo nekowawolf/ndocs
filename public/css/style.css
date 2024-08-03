@@ -1,0 +1,9 @@
+.custom-underline::after {
+    content: '';
+    display: block;
+    width: 180px; /* Adjust the width as needed */
+    height: 1px; /* Adjust the height as needed */
+    background-color: rgb(255, 255, 255); /* Adjust the color as needed */
+    margin-top: 15px; /* Adjust the margin as needed */
+  }
+  
