@@ -1,37 +1,26 @@
-function startCountdown(endTime, display) {
-  function updateTimer() {
-    var now = new Date().getTime();
-    var distance = endTime - now;
+async function getFearAndGreedIndex() {
+  try {
+      const response = await fetch('https://api.alternative.me/fng/');
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      const latestData = data.data[0];
 
-    var hours = Math.floor((distance % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
-    var minutes = Math.floor((distance % (60 * 60 * 1000)) / (60 * 1000));
-    var seconds = Math.floor((distance % (60 * 1000)) / 1000);
+      // Convert time_until_update from seconds to hh:mm:ss format
+      const totalSeconds = parseInt(latestData.time_until_update, 10);
+      const hours = Math.floor(totalSeconds / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+      const timeUntilUpdate = `${hours} hours, ${minutes} minutes, ${seconds} seconds`;
 
-    display.textContent = hours + " hours, " + minutes + " minutes, " + seconds + " seconds.";
-
-    if (distance < 0) {
-      // Reset to 24 hours
-      endTime = new Date().getTime() + (24 * 60 * 60 * 1000); // Set to 24 hours from now
-      localStorage.setItem('countdownEndTime', endTime);
-    }
-  }
-
-  updateTimer();
-  setInterval(updateTimer, 1000);
+      // Update the DOM
+      document.getElementById('time_until_update').textContent = timeUntilUpdate;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    document.getElementById('time_until_update').textContent = 'Error loading data';
+}
 }
 
-window.onload = function () {
-  var endTime = localStorage.getItem('countdownEndTime');
-
-  if (!endTime) {
-    // Set countdown to 24 hours from now initially
-    endTime = new Date().getTime() + (24 * 60 * 60 * 1000);
-    localStorage.setItem('countdownEndTime', endTime);
-  } else {
-    // Convert string back to number
-    endTime = parseInt(endTime, 10);
-  }
-
-  var display = document.getElementById('timer');
-  startCountdown(endTime, display);
-};
+// Call the function to fetch data after DOM is fully loaded
+document.addEventListener('DOMContentLoaded', getFearAndGreedIndex);
