@@ -10,7 +10,8 @@ function startCountdown(endTime, display) {
     display.textContent = hours + " hours, " + minutes + " minutes, " + seconds + " seconds.";
 
     if (distance < 0) {
-      endTime = new Date().getTime() + 24 * 60 * 60 * 1000; // Reset to 24 hours
+      // Reset to 24 hours
+      endTime = new Date().getTime() + (24 * 60 * 60 * 1000); // Set to 24 hours from now
       localStorage.setItem('countdownEndTime', endTime);
     }
   }
@@ -23,8 +24,12 @@ window.onload = function () {
   var endTime = localStorage.getItem('countdownEndTime');
 
   if (!endTime) {
-    endTime = new Date().getTime() + 11 * 60 * 60 * 1000 + 39 * 60 * 1000;
+    // Set countdown to 24 hours from now initially
+    endTime = new Date().getTime() + (24 * 60 * 60 * 1000);
     localStorage.setItem('countdownEndTime', endTime);
+  } else {
+    // Convert string back to number
+    endTime = parseInt(endTime, 10);
   }
 
   var display = document.getElementById('timer');
