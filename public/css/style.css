@@ -1,16 +1,22 @@
 .custom-underline::after {
     content: '';
     display: block;
-    width: 180px; /* Adjust the width as needed */
-    height: 1px; /* Adjust the height as needed */
-    background-color: rgb(255, 255, 255); /* Adjust the color as needed */
-    margin-top: 15px; /* Adjust the margin as needed */
+    width: 180px; 
+    height: 1px; 
+    background-color: rgb(255, 255, 255); 
+    margin-top: 15px; 
   }
   
 .transition-transform {
-    transition: transform 0.3s ease; /* Transisi rotasi */
+    transition: transform 0.3s ease; 
 }
 
 .rotate-180 {
-    transform: rotate(180deg); /* Rotasi panah 180 derajat */
+    transform: rotate(180deg); 
+}
+
+
+.scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(6, 98, 246) rgb(255, 255, 255); 
 }
