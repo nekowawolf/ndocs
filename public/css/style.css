@@ -20,3 +20,62 @@
     scrollbar-width: thin;
     scrollbar-color: rgb(6, 98, 246) rgb(255, 255, 255); 
 }
+
+#back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 50;
+    width: 40px; 
+    height: 40px;
+    border-radius: 50%; 
+}
+
+.layout {
+    display: flex;
+    flex-direction: column; 
+  }
+  
+  @media (min-width: 640px) { 
+    .layout {
+      flex-direction: row; 
+    }
+  }
+  
+  nav {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    height: 100vh; 
+    overflow-y: auto; 
+    width: 16rem;
+  }
+  
+  main {
+    flex: 1; 
+    margin-left: 0; 
+    padding: 1rem; 
+  }
+  
+  @media (min-width: 640px) {
+    main {
+      margin-left: 16rem; 
+      padding: 2rem;
+    }
+  }
+  
+  .main-content {
+    margin-left: 0; 
+  }
+  
+  @media (min-width: 640px) {
+    .main-content {
+      margin-left: 16rem; 
+    }
+  }
+
+  .navbar-scroll {
+    height: 100vh; 
+    overflow-y: auto;
+  }
