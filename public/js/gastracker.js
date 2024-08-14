@@ -42,17 +42,20 @@ async function fetchDataAndUpdateHTML() {
 
     const data = await response.json();
 
-    const { SafeGasPrice, ProposeGasPrice, FastGasPrice } = data.result;
+    
+    const safeGasPrice = parseFloat(data.result.SafeGasPrice).toFixed(3);
+    const proposeGasPrice = parseFloat(data.result.ProposeGasPrice).toFixed(3);
+    const fastGasPrice = parseFloat(data.result.FastGasPrice).toFixed(3);
 
     document.getElementById(
       "safeGasPrice"
-    ).innerText = `Gwei : ${SafeGasPrice}`;
+    ).innerText = `Gwei : ${safeGasPrice}`;
     document.getElementById(
       "proposeGasPrice"
-    ).innerText = `Gwei : ${ProposeGasPrice}`;
+    ).innerText = `Gwei : ${proposeGasPrice}`;
     document.getElementById(
       "fastGasPrice"
-    ).innerText = `Gwei : ${FastGasPrice}`;
+    ).innerText = `Gwei : ${fastGasPrice}`;
   } catch (error) {
     console.error("Error fetching data:", error);
   }
